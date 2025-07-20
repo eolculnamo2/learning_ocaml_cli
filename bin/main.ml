@@ -7,8 +7,8 @@ let print_hello_world = Command.make
 
 let print_another_cmd = Command.make 
     ~name:"print2"
-    ~handler: (fun args -> print_endline "print cmd 2")
-    ~args: [Arg.make ~name:"foo"]
+    ~handler: (fun args -> print_endline @@ "print cmd 2" ^ (args |> StringArgMap.find "foo").name)
+    ~args: [Arg.make ~name:"foo" ()]
     ()
 
 let () = App.run 
